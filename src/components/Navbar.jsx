@@ -60,7 +60,7 @@ const Navbar = () => {
 
       <li className="py-4">
         <NavLink
-          to="/"
+          to="/blog"
           className={({ isActive }) =>
             isActive
               ? "border-b-4 border-secondary text-sm"
