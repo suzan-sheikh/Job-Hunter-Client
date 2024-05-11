@@ -15,7 +15,17 @@ const AllJobsDetails = () => {
   const email = user?.email;
   const name = user?.displayName;
 
-  const { photoURL, job_title, category, description, buyer, dedLine} = job || {};
+  const {
+    photoURL,
+    job_title,
+    category,
+    description,
+    buyer,
+    dedLine,
+    postDate,
+    min_salary,
+    max_salary,
+  } = job || {};
   
   const handleApply = async () => {
 
@@ -31,8 +41,8 @@ const AllJobsDetails = () => {
     const { value: formValues } = await Swal.fire({
       title: 'Input email and password',
       html:
-        `<input id="swal-input1" class="swal2-input" value="${email || ''}">` +
-        `<input id="swal-input2" class="swal2-input" type="text" value="${name || ''}">`+
+        `<input id="swal-input1" class="swal2-input" value="${email || ''}"readonly>` +
+        `<input id="swal-input2" class="swal2-input" type="text" value="${name || ''}" readonly>`+
         `<input id="swal-input3" class="swal2-input" placeholder="Your resume link" type="text">`,
       focusConfirm: false,
       preConfirm: () => {
@@ -45,12 +55,25 @@ const AllJobsDetails = () => {
     });
 
     if (formValues) {
-      const [email, name, link] = formValues;
-      const jobData = { 
-        ...job, 
-        link, 
-        email, 
-        name 
+      const [email, name,  resumeLink] = formValues;
+
+      if(resumeLink.length < 5){
+        return toast.error("resume_link is require");
+      }
+
+      const jobData = {
+        photoURL,
+        job_title,
+        category,
+        description,
+        buyer,
+        dedLine,
+        postDate,
+        min_salary,
+        max_salary,
+        resumeLink,
+        email,
+        name,
       };
 
       try {
