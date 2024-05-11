@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react"
 import JobCardTwo from "../components/JobCardTwo"
+import axios from "axios"
+import useAuth from "../hooks/useAuth"
 
 const AppliedJobs = () => {
   const pages = [1, 2, 3, 4, 5]
+  // const [jobs, setJobs] = useState([])
+
+  const {user} = useAuth();
+
+  const email = user?.email;
+  console.log(email);
+
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const {data} = await axios(`${import.meta.env.VITE_API_URL}/applyJob/:user.email`)
+  //     setJobs(data)
+  //   }
+  //   getData()
+  // },[])
+
+
+
+
+
   return (
     <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
       <div>

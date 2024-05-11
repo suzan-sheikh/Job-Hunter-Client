@@ -22,7 +22,7 @@ const JobCard = ({ job }) => {
 
   return (
     <div className="grid md:grid-cols-5 gap-2 border-2 rounded-sm text-black">
-      <div className="relative overflow-hidden p-2 border-r-2 flex items-center">
+      <div className="relative overflow-hidden p-2 md:border-r-2 flex items-center">
         <span className="absolute transform rotate-[-45deg] bg-[#e12335] text-white px-8 top-2 left-[-34px] text-sm">
           {category}
         </span>
@@ -30,7 +30,7 @@ const JobCard = ({ job }) => {
           <img className="w-full rounded-md" src={photoURL} alt="image" />
         </div>
       </div>
-      <div className="col-span-4 p-2 space-y-2">
+      <div className="md:col-span-4 p-2 space-y-2">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-bold text-black">{job_title}</h2>
           <CiHeart className="text-xl text-green-500" />
@@ -65,7 +65,7 @@ const JobCard = ({ job }) => {
           </div>
         </div>
         <div className="divider p-0 m-0"></div>
-        <div className="flex gap-4 justify-between">
+        <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
           <div className="flex items-center">
             <p className="text-sm"> sta 01 </p>
             <FcImport className="text-xl" />
