@@ -133,13 +133,15 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/">
+                      <Link to="/myJobs">
                         <div>My Jobs</div>
                       </Link>
                     </li>
 
                     <li>
-                      <div>Applied Jobs</div>
+                      <Link to='/appliedJobs'>
+                        <div>Applied Jobs</div>
+                      </Link>
                     </li>
                     <li className="mt-2">
                       <button
