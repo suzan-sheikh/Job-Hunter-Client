@@ -3,6 +3,7 @@ import { IoStarHalfSharp } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 import { FcImport } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const JobCard = ({ job }) => {
   const {
@@ -65,6 +66,10 @@ const JobCard = ({ job }) => {
       </div>
     </div>
   );
+};
+
+JobCard.propTypes = {
+  job: PropTypes.object.isRequired
 };
 
 export default JobCard;
