@@ -47,7 +47,7 @@ const Navbar = () => {
 
       <li className="py-4">
         <NavLink
-          to="/"
+          to="/allJobs"
           className={({ isActive }) =>
             isActive
               ? "border-b-4 border-secondary text-sm"
@@ -128,16 +128,18 @@ const Navbar = () => {
                     className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                   >
                     <li>
-                      <div className="justify-between">Add Job</div>
+                      <Link to='/addJobs'>
+                        <div>Add A Job</div>
+                      </Link>
                     </li>
                     <li>
-                      <div>My Posted Jobs</div>
+                      <Link to="/">
+                        <div>My Jobs</div>
+                      </Link>
                     </li>
+
                     <li>
-                      <div>My Bids</div>
-                    </li>
-                    <li>
-                      <div>Bid Requests</div>
+                      <div>Applied Jobs</div>
                     </li>
                     <li className="mt-2">
                       <button

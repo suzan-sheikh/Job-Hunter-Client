@@ -59,7 +59,7 @@ const Blog = () => {
                                 <h3 className="flex-1 py-2 text-lg font-semibold leading-snug uppercase"> Explain MY code </h3>
                                 
                                 
-                                <p className="text-justify mb-4"><span className="text-secondary border-l-4 border-primary pl-2 uppercase"> My Code: </span> Hi, i am Md Suan Sheikh code is my dreme 11 years </p>
+                                <p className="text-justify mb-4"><span className="text-secondary border-l-4 border-primary pl-2 uppercase"> My Code: </span> Hi, i am Md Suan Sheikh code is my dreme JobFinder is a modern web application designed to help job seekers find relevant employment opportunities efficiently. Built using React.js, it offers a user-friendly interface and robust features for both job seekers and employers. This project aims to address the needs of both job seekers powered by React. User Authentication, Job Listings, Job Details, Search Functionality, Saved Jobs, Application Tracking, Resume Upload etc</p>
 
                                 <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-600">
                                     <span>May 11, 2024</span>

@@ -5,6 +5,9 @@ import Login from "../pages/Authentication/Login";
 import Registration from "../pages/Authentication/Registration";
 import JobDetails from "../pages/JobDetails";
 import Blog from "../pages/Blog";
+import AllJobs from "../pages/AllJobs";
+import AllJobsDetails from "../pages/AllJobsDetails";
+import AddJob from "../pages/AddJob";
 
 const router = createBrowserRouter([
   {
@@ -13,26 +16,37 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
-        path: '/login',
-        element: <Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/register',
-        element: <Registration/>
+        path: "/register",
+        element: <Registration />,
+      },
+      {
+        path: "/jobDetails",
+        element: <JobDetails />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: '/allJobs',
+        element: <AllJobs/>
+      },
+      {
+        path: '/allJobsDetails',
+        element: <AllJobsDetails/>
       }
       ,
       {
-        path: '/jobDetails',
-        element: <JobDetails/>
-      }
-      ,
-      {
-        path: '/blog',
-        element: <Blog/>
-      }
+        path: '/addJobs',
+        element: <AddJob/>
+      }       
     ],
   },
 ]);
