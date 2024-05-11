@@ -1,10 +1,55 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAuth from "../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import axios from "axios";
+import Loader from "./Loader";
 
 const AddJob = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [postDate, setPostDate] = useState(new Date());
+  const [postDate, setPostDate] = useState(null);
+  const [dedLine, setDedLine] = useState(null);
+
+const {user, loading} = useAuth();
+
+
+const {
+  register,
+  reset,
+  handleSubmit,
+  formState: { errors },
+} = useForm();
+
+const onSubmit = async(data) => {
+  const { job_title, min, max, category, photoURL,description} = data;
+
+  const min_salary = parseFloat(min);
+  const max_salary = parseFloat(max);
+  const email = user?.email;
+  const name = user?.displayName;
+
+  const jobData = {photoURL, job_title, email, category, max_salary, min_salary, description, dedLine, postDate, name};
+
+
+  try {
+    const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jobs`, jobData)
+    console.log(data);
+    if(data.acknowledged){
+      toast.success("Add A job Success");
+      reset();
+    }
+    
+  } catch (err) {
+    console.log(err);
+    toast.error('Add Job Failed');
+  }
+};
+
+
+  if(loading) {
+    return <Loader/>
+  }
 
   return (
     <div className="container px-4 mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
@@ -18,9 +63,9 @@ const AddJob = () => {
           />
         </div>
         
-        <form className="shadow-2xl p-4 rounded-lg">
+        <form onSubmit={handleSubmit(onSubmit)} className="shadow-2xl p-4 rounded-lg">
           <h2 className="text-lg font-semibold text-gray-700 uppercase text-center ">
-            Post a Job
+            Add a Job
           </h2>
 
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -33,7 +78,11 @@ const AddJob = () => {
                 name="job_title"
                 type="text"
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                {...register("job_title", { required: true })}
               />
+              {errors.job_title && (
+                <span className="text-primary">This field is required</span>
+              )}
             </div>
 
             <div>
@@ -41,10 +90,11 @@ const AddJob = () => {
                 Email Address
               </label>
               <input
-                id="emailAddress"
+                id="email"
                 type="email"
                 name="email"
                 disabled
+                defaultValue={user?.email}
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
@@ -52,6 +102,7 @@ const AddJob = () => {
             <div className="flex flex-col gap-2 ">
               <label className="text-gray-700">Posting Date</label>
               <DatePicker
+                className="border p-1 rounded-md"
                 selected={postDate}
                 onChange={(date) => setPostDate(date)}
               />
@@ -61,8 +112,9 @@ const AddJob = () => {
               <label className="text-gray-700">Deadline</label>
 
               <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                className="border p-1 rounded-md"
+                selected={dedLine}
+                onChange={(date) => setDedLine(date)}
               />
             </div>
 
@@ -71,11 +123,15 @@ const AddJob = () => {
                 Minimum Salary
               </label>
               <input
-                id="min_price"
-                name="min_price"
+                id="min"
+                name="min_salary"
                 type="number"
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
+                {...register("min", { required: true })}
+                />
+                {errors.min && (
+                  <span className="text-primary">This field is required</span>
+                )}
             </div>
 
             <div>
@@ -83,11 +139,15 @@ const AddJob = () => {
                 Maximum Salary
               </label>
               <input
-                id="max_price"
-                name="max_price"
+                id="max"
+                name="max_salary"
                 type="number"
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                {...register("max", { required: true })}
               />
+              {errors.max_salary && (
+                <span className="text-primary">This field is required</span>
+              )}
             </div>
 
             <div className="flex flex-col gap-2 ">
@@ -97,6 +157,7 @@ const AddJob = () => {
               <select
                 name="category"
                 id="category"
+                {...register("category")}
                 className="border p-1 rounded-md"
               >
                 <option value="On Site">On Site</option>
@@ -111,11 +172,15 @@ const AddJob = () => {
                 Picture URL
               </label>
               <input
-                id=""
+                id="photoURL"
                 type="text"
                 name="photoURL"
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
+                {...register("photoURL", { required: true })}
+                />
+                {errors.photoURL && (
+                  <span className="text-primary">This field is required</span>
+                )}
             </div>
           </div>
           <div className="flex flex-col gap-2 mt-4">
@@ -126,6 +191,7 @@ const AddJob = () => {
               className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               name="description"
               id="description"
+              {...register("description")}
             ></textarea>
           </div>
           <div className="flex justify-end mt-6">
@@ -134,7 +200,6 @@ const AddJob = () => {
             </button>
           </div>
         </form>
-        {/* https://blog.ttisi.com/hs-fs/hubfs/TriMetrixHD-and-EQ_Pages.png?width=700&name=TriMetrixHD-and-EQ_Pages.png */}
       </section>
     </div>
   );
