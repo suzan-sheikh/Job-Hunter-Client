@@ -6,64 +6,82 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Loader from "./Loader";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const [postDate, setPostDate] = useState(null);
   const [dedLine, setDedLine] = useState(null);
+  const navigate = useNavigate();
 
-const {user, loading} = useAuth();
+  const { user, loading } = useAuth();
 
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-const {
-  register,
-  reset,
-  handleSubmit,
-  formState: { errors },
-} = useForm();
+  const onSubmit = async (data) => {
+    const { job_title, min, max, category, photoURL, description } = data;
 
-const onSubmit = async(data) => {
-  const { job_title, min, max, category, photoURL,description} = data;
+    const min_salary = parseFloat(min);
+    const max_salary = parseFloat(max);
 
-  const min_salary = parseFloat(min);
-  const max_salary = parseFloat(max);
-  const email = user?.email;
-  const name = user?.displayName;
+    const email = user?.email;
+    const name = user?.displayName;
 
-  const jobData = {photoURL, job_title, email, category, max_salary, min_salary, description, dedLine, postDate, name};
+    const jobData = {
+      photoURL,
+      job_title,
+      category,
+      max_salary,
+      min_salary,
+      description,
+      dedLine,
+      postDate,
+      buyer : {
+        email,
+        name
+      }
+    };
 
-
-  try {
-    const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jobs`, jobData)
-    console.log(data);
-    if(data.acknowledged){
-      toast.success("Add A job Success");
-      reset();
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/job`,
+        jobData
+      );
+      console.log(data);
+      if (data.acknowledged) {
+        toast.success("Add A job Success");
+        navigate('/myJobs')
+        reset();
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Add Job Failed");
     }
-    
-  } catch (err) {
-    console.log(err);
-    toast.error('Add Job Failed');
-  }
-};
+  };
 
-
-  if(loading) {
-    return <Loader/>
+  if (loading) {
+    return <Loader />;
   }
 
   return (
     <div className="container px-4 mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <section className="flex flex-col md:flex-row p-2 md:p-6 mx-auto rounded-md shadow-md justify-center items-center gap-6 container px-4">
-        
-        
         <div className="w-1/3 shadow-2xl p-4 rounded-lg">
-          <img className="rounded-lg"
+          <img
+            className="rounded-lg"
             src="https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="job image"
           />
         </div>
-        
-        <form onSubmit={handleSubmit(onSubmit)} className="shadow-2xl p-4 rounded-lg">
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="shadow-2xl p-4 rounded-lg"
+        >
           <h2 className="text-lg font-semibold text-gray-700 uppercase text-center ">
             Add a Job
           </h2>
@@ -128,10 +146,10 @@ const onSubmit = async(data) => {
                 type="number"
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 {...register("min", { required: true })}
-                />
-                {errors.min && (
-                  <span className="text-primary">This field is required</span>
-                )}
+              />
+              {errors.min && (
+                <span className="text-primary">This field is required</span>
+              )}
             </div>
 
             <div>
@@ -177,10 +195,10 @@ const onSubmit = async(data) => {
                 name="photoURL"
                 className="block w-full px-4 py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                 {...register("photoURL", { required: true })}
-                />
-                {errors.photoURL && (
-                  <span className="text-primary">This field is required</span>
-                )}
+              />
+              {errors.photoURL && (
+                <span className="text-primary">This field is required</span>
+              )}
             </div>
           </div>
           <div className="flex flex-col gap-2 mt-4">

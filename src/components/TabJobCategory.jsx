@@ -16,6 +16,7 @@ const TabCategories = () => {
     getData()
   },[])
 
+
   return (
     <Tabs>
       <div className=" container px-4 py-6 mx-auto">
@@ -48,7 +49,7 @@ const TabCategories = () => {
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs
-              .filter((j) => j.category === "On-Site")
+              .filter((j) => j.category === "On Site")
               .map((job) => (
                 <JobCard key={job._id} job={job} />
               ))}
@@ -78,7 +79,7 @@ const TabCategories = () => {
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs
-              .filter((j) => j.category === "Part-time")
+              .filter((j) => j.category === "Part Time")
               .map((job) => (
                 <JobCard key={job._id} job={job} />
               ))}

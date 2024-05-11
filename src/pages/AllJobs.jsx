@@ -1,6 +1,21 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AllJobs = () => {
+
+  const [jobs, setJobs] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      const {data} = await axios(`${import.meta.env.VITE_API_URL}/jobs`)
+      setJobs(data)
+    }
+    getData()
+  },[])
+
+  console.log(jobs);
+
   return (
     <section className="container px-4 mx-auto pt-4">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2">
@@ -69,30 +84,45 @@ const AllJobs = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
-                  <tr>
-                    <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                      Build Dynamic Website
-                    </td>
+                {jobs.map(job => (
+                  <tr key={job._id}>
+                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                    {job.job_title}
+                  </td>
 
-                    <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                      10/04/2024
-                    </td>
+                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                   {new Date(job.postDate).toLocaleDateString()}
+                  </td>
 
-                    <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                      10/04/2024
-                    </td>
+                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                  {new Date(job.dedLine).toLocaleDateString()} 
+                  </td>
 
-                    <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                      $100-$200
-                    </td>
-                    <td className="px-4 py-4 text-sm whitespace-nowrap">
-                      <Link to='/allJobsDetails'>
-                        <span className="hover:bg-[#ffb607] transition-all cursor-pointer bg-[#186fc9] text-white px-6 py-1">
-                          Details
-                        </span>
-                      </Link>
-                    </td>
-                  </tr>
+                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                   <span> $ {job.max_salary} to $ {job.min_salary}</span>
+                  </td>
+                  <td className="px-4 py-4 text-sm whitespace-nowrap">
+                    <Link to={`/job/${job._id}`}> 
+                      <span className={`px-6 py-1 ${
+                              job.category === 'On Site' &&
+                              'text-blue-500 bg-blue-100/80 hover:bg-blue-500 hover:text-white transition-all'
+                            } ${
+                              job.category === 'Remote' &&
+                              'text-emerald-500 bg-emerald-100/80 hover:bg-emerald-500 hover:text-white transition-all'
+                            } ${
+                              job.category === 'Part Time' &&
+                              'text-pink-500 bg-pink-100/80 hover:bg-pink-500 hover:text-white transition-all'
+                            }
+                            ${
+                              job.category === 'Hybrid' &&
+                              'bg-red-100/80 hover:bg-red-500 text-red-500 hover:text-white transition-all'
+                            }`}>
+                        Details
+                      </span>
+                    </Link>
+                  </td>
+                </tr>
+                ))}
                 </tbody>
               </table>
             </div>
@@ -104,3 +134,5 @@ const AllJobs = () => {
 };
 
 export default AllJobs;
+
+
