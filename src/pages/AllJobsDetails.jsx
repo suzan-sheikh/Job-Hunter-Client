@@ -19,10 +19,12 @@ const AllJobsDetails = () => {
   
   const handleApply = async () => {
 
-    const currentDate = new Date().toLocaleDateString();
+    const currentDate = Date.now();
+    const deadlineDate = new Date(dedLine).getTime();
 
-    if(currentDate === dedLine){
-      return toast.error("time is over");
+    if(currentDate > deadlineDate){
+      toast.error("Job Applied Date is over");
+      return navigate('/allJobs');
     }
 
 
