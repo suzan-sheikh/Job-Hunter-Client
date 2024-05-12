@@ -15,6 +15,9 @@ const AllJobsDetails = () => {
   const email = user?.email;
   const name = user?.displayName;
 
+  const buyerEmail = job?.buyer.email || '';
+
+
   const {
     photoURL,
     job_title,
@@ -28,6 +31,12 @@ const AllJobsDetails = () => {
   } = job || {};
   
   const handleApply = async () => {
+
+    if(email == buyerEmail){
+      toast.error("Sorry You added This Job");
+      return navigate('/allJobs');
+    }
+
 
     const currentDate = Date.now();
     const deadlineDate = new Date(dedLine).getTime();

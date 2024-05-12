@@ -5,9 +5,9 @@ import { FcImport } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const JobCard = ({ job }) => {
+const AppliedJobCard = ({ job }) => {
+  
   const {
-    _id,
     photoURL,
     job_title,
     category,
@@ -18,6 +18,7 @@ const JobCard = ({ job }) => {
     buyer,
   } = job || {};
 
+  console.log(buyer?.email, buyer?.name);
   return (
     <div className="grid md:grid-cols-5 gap-2 border-2 rounded-sm text-black">
       <div className="relative overflow-hidden p-2 md:border-r-2 flex items-center">
@@ -75,7 +76,7 @@ const JobCard = ({ job }) => {
               $ {max_salary} to $ {min_salary}{" "}
             </p>
           </div>
-          <Link to={`/job/${_id}`}>
+          <Link>
             <span
               className={`cursor-pointer px-6 py-1 ${
                 category === "On Site" &&
@@ -91,7 +92,7 @@ const JobCard = ({ job }) => {
                 "hover:bg-red-500 bg-red-500 text-white transition-all"
               }`}
             >
-              Details
+              Your Applied Job
             </span>
           </Link>
         </div>
@@ -100,8 +101,8 @@ const JobCard = ({ job }) => {
   );
 };
 
-JobCard.propTypes = {
+AppliedJobCard.propTypes = {
   job: PropTypes.object.isRequired,
 };
 
-export default JobCard;
+export default AppliedJobCard;

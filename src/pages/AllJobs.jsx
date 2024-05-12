@@ -3,16 +3,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AllJobs = () => {
+  const pages = [1, 2, 3, 4, 5];
 
-  const [jobs, setJobs] = useState([])
+  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const {data} = await axios(`${import.meta.env.VITE_API_URL}/jobs`)
-      setJobs(data)
-    }
-    getData()
-  },[])
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
+      setJobs(data);
+    };
+    getData();
+  }, []);
 
   return (
     <section className="container px-4 mx-auto pt-4">
@@ -27,7 +28,7 @@ const AllJobs = () => {
               aria-label="Enter Job Title"
             />
 
-            <button className="px-1 md:px-2 py-1 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+            <button className="px-1 md:px-4 py-1 text-sm font-medium tracking-wider hover:bg-emerald-500 bg-blue-500 text-white transition-all">
               Search
             </button>
           </div>
@@ -82,47 +83,105 @@ const AllJobs = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
-                {jobs.map(job => (
-                  <tr key={job._id}>
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                    {job.job_title}
-                  </td>
+                  {jobs.map((job) => (
+                    <tr key={job._id}>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {job.job_title}
+                      </td>
 
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                   {new Date(job.postDate).toLocaleDateString()}
-                  </td>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {new Date(job.postDate).toLocaleDateString()}
+                      </td>
 
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                  {new Date(job.dedLine).toLocaleDateString()} 
-                  </td>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {new Date(job.dedLine).toLocaleDateString()}
+                      </td>
 
-                  <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                   <span> $ {job.max_salary} to $ {job.min_salary}</span>
-                  </td>
-                  <td className="px-4 py-4 text-sm whitespace-nowrap">
-                    <Link to={`/job/${job._id}`}> 
-                      <span className={`px-6 py-1 ${
-                              job.category === 'On Site' &&
-                              'text-blue-500 bg-blue-100/80 hover:bg-blue-500 hover:text-white transition-all'
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        <span>
+                          {" "}
+                          $ {job.max_salary} to $ {job.min_salary}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
+                        <Link to={`/job/${job._id}`}>
+                          <span
+                            className={`px-6 py-1 ${
+                              job.category === "On Site" &&
+                              "text-blue-500 bg-blue-100/80 hover:bg-blue-500 hover:text-white transition-all"
                             } ${
-                              job.category === 'Remote' &&
-                              'text-emerald-500 bg-emerald-100/80 hover:bg-emerald-500 hover:text-white transition-all'
+                              job.category === "Remote" &&
+                              "text-emerald-500 bg-emerald-100/80 hover:bg-emerald-500 hover:text-white transition-all"
                             } ${
-                              job.category === 'Part Time' &&
-                              'text-pink-500 bg-pink-100/80 hover:bg-pink-500 hover:text-white transition-all'
+                              job.category === "Part Time" &&
+                              "text-pink-500 bg-pink-100/80 hover:bg-pink-500 hover:text-white transition-all"
                             }
                             ${
-                              job.category === 'Hybrid' &&
-                              'bg-red-100/80 hover:bg-red-500 text-red-500 hover:text-white transition-all'
-                            }`}>
-                        Details
-                      </span>
-                    </Link>
-                  </td>
-                </tr>
-                ))}
+                              job.category === "Hybrid" &&
+                              "bg-red-100/80 hover:bg-red-500 text-red-500 hover:text-white transition-all"
+                            }`}
+                          >
+                            Details
+                          </span>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
+
+              <div className="flex justify-center mt-12">
+                <button className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-green-500 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white">
+                  <div className="flex items-center -mx-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6 mx-1 rtl:-scale-x-100"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                      />
+                    </svg>
+
+                    <span className="mx-1">previous</span>
+                  </div>
+                </button>
+
+                {pages.map((btnNum) => (
+                  <button
+                    key={btnNum}
+                    className={`hidden px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
+                  >
+                    {btnNum}
+                  </button>
+                ))}
+
+                <button className="px-4 py-2 mx-1 text-white transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500">
+                  <div className="flex items-center -mx-1">
+                    <span className="mx-1">Next</span>
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6 mx-1 rtl:-scale-x-100"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -132,5 +191,3 @@ const AllJobs = () => {
 };
 
 export default AllJobs;
-
-

@@ -57,6 +57,42 @@ const Navbar = () => {
           All Jobs
         </NavLink>
       </li>
+      <li className="py-4">
+        <NavLink
+          to="/addJobs"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-4 border-secondary text-sm"
+              : "text-sm text-black border-none"
+          }
+        >
+          Add A Job
+        </NavLink>
+      </li>
+      <li className="py-4">
+        <NavLink
+          to="/myJobs"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-4 border-secondary text-sm"
+              : "text-sm text-black border-none"
+          }
+        >
+          My Jobs
+        </NavLink>
+      </li>
+      <li className="py-4">
+        <NavLink
+          to="/appliedJobs"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-4 border-secondary text-sm"
+              : "text-sm text-black border-none"
+          }
+        >
+         Applied Jobs
+        </NavLink>
+      </li>
 
       <li className="py-4">
         <NavLink

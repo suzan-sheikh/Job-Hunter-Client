@@ -1,22 +1,37 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
-
+import { useEffect } from "react";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { signIn, signInWithGoogle } = useAuth();
+  const { signIn, signInWithGoogle, user, loading } = useAuth();
+  const location = useLocation();
+  const from = location.state || "/";
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   // googleSignIN
   const handleGoogleSignIn = async () => {
     try {
       // 1. google sign in from firebase
       const result = await signInWithGoogle();
-      console.log(result.user);
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
       toast.success("login success");
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       console.log(err);
       toast.error("login failed");
@@ -30,19 +45,27 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     const { email, password } = data;
     try {
       //User Login
       const result = await signIn(email, password);
-      console.log(result.user);
+       await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      navigate(from, { replace: true });
       toast.success("Login Successful");
       reset();
     } catch (err) {
-      toast.error('Login Failed');
+      toast.error("Login Failed");
     }
   };
 
+  if (user && loading) return;
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-350px)] mx-auto my-4 container px-4">
