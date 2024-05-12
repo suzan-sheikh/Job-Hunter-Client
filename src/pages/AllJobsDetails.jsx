@@ -58,7 +58,7 @@ const AllJobsDetails = () => {
       const [email, name,  resumeLink] = formValues;
 
       if(resumeLink.length < 5){
-        return toast.error("resume_link is require");
+        return toast.error("resume_link is require please try again");
       }
 
       const jobData = {

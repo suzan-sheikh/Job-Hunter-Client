@@ -35,7 +35,7 @@ const JobCard = ({ job }) => {
           <h2 className="text-lg font-bold text-black">{job_title}</h2>
           <CiHeart className="text-xl text-green-500" />
         </div>
-        <p className="text-sm">{buyer?.email}</p>
+        <p className="text-sm">{buyer?.name}</p>
 
         <span
           className={`cursor-pointer px-6 text-sm py-1 flex items-center justify-center ${

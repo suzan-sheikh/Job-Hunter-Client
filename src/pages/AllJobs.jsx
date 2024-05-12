@@ -14,8 +14,6 @@ const AllJobs = () => {
     getData()
   },[])
 
-  console.log(jobs);
-
   return (
     <section className="container px-4 mx-auto pt-4">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2">
