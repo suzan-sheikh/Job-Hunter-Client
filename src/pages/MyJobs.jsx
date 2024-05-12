@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyJobs = () => {
   const { user } = useAuth();
@@ -188,6 +189,7 @@ const MyJobs = () => {
                             </svg>
                           </button>
 
+                          <Link to={`/update/${job._id}`}>
                           <button className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -204,6 +206,7 @@ const MyJobs = () => {
                               />
                             </svg>
                           </button>
+                          </Link>
                         </div>
                       </td>
                     </tr>
