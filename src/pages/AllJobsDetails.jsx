@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Loader from "./Loader";
 import axios from "axios";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllJobsDetails = () => {
   const job = useLoaderData();
@@ -14,6 +15,8 @@ const AllJobsDetails = () => {
   const { user, loading } = useAuth();
   const email = user?.email;
   const name = user?.displayName;
+
+  const axiosSecure = useAxiosSecure()
 
   const buyerEmail = job?.buyer.email || '';
 
@@ -86,10 +89,7 @@ const AllJobsDetails = () => {
       };
 
       try {
-        const { data } = await axios.post(
-          `${import.meta.env.VITE_API_URL}/applyJob`,
-          jobData
-        );
+        const { data } = await axiosSecure.post(`/applyJob`, jobData);
         console.log(data);
         if (data.acknowledged) {
           toast.success("Applied Success");
@@ -97,7 +97,7 @@ const AllJobsDetails = () => {
         }
       } catch (err) {
         console.log(err);
-        toast.error("Applied failed Failed");
+        toast.error("You have already Applied this job");
       } 
     }
   }

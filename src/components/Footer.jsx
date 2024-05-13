@@ -85,7 +85,7 @@ const Footer = () => {
           <div className="flex flex-col gap-1">
             <p className="text-cyan-500">Contact Us</p>
             <div className="flex items-center justify-center gap-2">
-              <FaSquareWhatsapp className="text-cyan-500 text-3xl" />
+              <FaSquareWhatsapp className="text-cyan-500 text-3xl hover:text-green-500 cursor-pointer" />
               +88001855189653
             </div>
           </div>
