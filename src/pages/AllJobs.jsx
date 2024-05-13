@@ -1,13 +1,13 @@
 import { useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AllJobs = () => {
   const [itemPerPage, setItemPerPage] = useState(5)
   const [count, setCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [jobs, setJobs] = useState([])
 
 
 
@@ -30,29 +30,13 @@ const AllJobs = () => {
   console.log(currentPage, itemPerPage);
 
 
-
-
-
-
-
-
-
-
-
-
-  const { data: jobs = [], isLoading } = useQuery({
-    queryFn: async () => {
-
+  useEffect(() => {
+    const getData = async () => {
       const { data } = await axios(`${import.meta.env.VITE_API_URL}/allJobs?page=${currentPage}&size=${itemPerPage}`)
-      return data
-    },
-    queryKey: ['allJobs'],
-  });
-
-  if(isLoading) return <Loader/>
-
-
-
+      setJobs(data)
+    }
+    getData()
+  }, [currentPage, itemPerPage])
 
 
 
