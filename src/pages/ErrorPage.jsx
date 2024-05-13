@@ -23,7 +23,7 @@ const ErrorPage = () => {
               to="/"
               rel="noopener noreferrer"
               href="#"
-              className="px-8 py-3 text-base-300 font-semibold rounded bg-lime-600"
+              className="bg-green-500 hover:bg-yellow-500 text-white transition-all px-4 py-2 rounded-sm"
             >
               GO BACK HOME
             </NavLink>
