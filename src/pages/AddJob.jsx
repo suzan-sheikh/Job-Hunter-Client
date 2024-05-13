@@ -16,21 +16,24 @@ const AddJob = () => {
 
   const { user, loading } = useAuth();
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   // useTenStackQuery
   const { mutateAsync } = useMutation({
     mutationFn: async ({ jobData }) => {
-      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/job`, jobData);
-      return data      
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/job`,
+        jobData
+      );
+      return data;
     },
     onSuccess: () => {
       toast.success("Add A job Success");
       navigate("/myJobs");
-      
+
       // refetch()
-      queryClient.invalidateQueries({queryKey: ['allJobs']})
-    }
+      queryClient.invalidateQueries({ queryKey: ["allJobs"] });
+    },
   });
 
   const {
@@ -61,10 +64,11 @@ const AddJob = () => {
         email,
         name,
       },
+      jobId: 0,
     };
 
     try {
-      await mutateAsync({ jobData }); 
+      await mutateAsync({ jobData });
     } catch (err) {
       toast.error("Add Job Failed");
     }
