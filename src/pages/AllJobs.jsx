@@ -1,20 +1,65 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
+import { useState } from "react";
 
 const AllJobs = () => {
-  const pages = [1, 2, 3, 4, 5];
+  const [itemPerPage, setItemPerPage] = useState(5)
+  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
+
+
+
+  
+  // pagination
+  const pages = [...Array(Math.ceil(count / itemPerPage)).keys()].map(element => element + 1);
+  const {refetch} = useQuery({
+    queryFn: async () => {
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobsCount`);
+      setCount(data.count)
+      refetch()
+      return data
+    },
+    queryKey: ['count'],
+  });
+  // handle pagination button
+  const handlePaginationButton = (value) => {
+    setCurrentPage(value)
+  }
+  console.log(currentPage, itemPerPage);
+
+
+
+
+
+
+
+
+
+
+
 
   const { data: jobs = [], isLoading } = useQuery({
     queryFn: async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
+
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/allJobs?page=${currentPage}&size=${itemPerPage}`)
       return data
     },
     queryKey: ['allJobs'],
   });
 
   if(isLoading) return <Loader/>
+
+
+
+
+
+
+
+
+
+
   return (
     <section className="container px-4 mx-auto pt-4">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2">
@@ -130,7 +175,7 @@ const AllJobs = () => {
                 </tbody>
               </table>
 
-              <div className="flex justify-center mt-12">
+              <div className="flex justify-center m-12">
                 <button className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-green-500 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white">
                   <div className="flex items-center -mx-1">
                     <svg
@@ -154,6 +199,7 @@ const AllJobs = () => {
 
                 {pages.map((btnNum) => (
                   <button
+                  onClick={() => handlePaginationButton(btnNum)}
                     key={btnNum}
                     className={`hidden px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
                   >

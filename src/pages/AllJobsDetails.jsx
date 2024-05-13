@@ -5,7 +5,6 @@ import useAuth from "../hooks/useAuth";
 import Swal from 'sweetalert2';
 import toast from "react-hot-toast";
 import Loader from "./Loader";
-import axios from "axios";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
