@@ -5,23 +5,26 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "./Loader";
 
 const AppliedJobs = () => {
-  
   const { user } = useAuth();
-  const { data: jobs = [], isLoading, refetch, isError, error} = useQuery({
+  const {
+    data: jobs = [],
+    isLoading,
+    refetch,
+    isError,
+    error,
+  } = useQuery({
     queryFn: () => getData(),
-    queryKey: ['applyJobs'],
+    queryKey: ["applyJobs"],
   });
 
-  console.log(isLoading);
   const axiosSecure = useAxiosSecure();
 
   const getData = async () => {
     const { data } = await axiosSecure(`/applyJob/${user?.email}`);
-    return data
+    return data;
   };
 
-  if(isLoading) return <Loader/>
-
+  if (isLoading) return <Loader />;
 
   return (
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">

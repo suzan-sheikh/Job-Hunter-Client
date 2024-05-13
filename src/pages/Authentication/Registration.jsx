@@ -45,12 +45,10 @@ const Registration = () => {
         },
         { withCredentials: true }
       );
-      console.log(data);      
       
       reset();
       navigate(from, { replace: true });
     } catch (err) {
-      console.log(err);
       toast.error("Register fail");
     }
   };

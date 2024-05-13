@@ -33,7 +33,6 @@ const Login = () => {
       toast.success("login success");
       navigate(from, { replace: true });
     } catch (err) {
-      console.log(err);
       toast.error("login failed");
     }
   };

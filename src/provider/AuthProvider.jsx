@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
     const {data} = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
       withCredentials: true,
     })
-    console.log(data)
     toast.success('logout success!')
     return signOut(auth)
   }
@@ -58,7 +57,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
-      console.log('CurrentUser-->', currentUser)
+      // console.log('CurrentUser-->', currentUser)
       setLoading(false)
     })
     return () => {

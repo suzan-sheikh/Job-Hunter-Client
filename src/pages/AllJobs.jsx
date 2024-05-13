@@ -53,15 +53,14 @@ const AllJobs = () => {
   const handlePaginationButton = (value) => {
     setCurrentPage(value);
   };
-  console.log(currentPage, itemPerPage);
 
 
   const handleSearch = e => {
     e.preventDefault()
 
+
     setSearch(searchText)
   }
-
 
   return (
     <section className="container px-4 mx-auto pt-4">

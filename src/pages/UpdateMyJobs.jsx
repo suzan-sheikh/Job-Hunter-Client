@@ -68,7 +68,6 @@ const UpdateMyJobs = () => {
     try {
       await mutateAsync({jobData})
     } catch (err) {
-      console.log(err);
       toast.error("Update Job Failed");
     }
   };

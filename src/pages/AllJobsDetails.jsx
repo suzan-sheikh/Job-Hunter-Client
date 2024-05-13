@@ -89,13 +89,13 @@ const AllJobsDetails = () => {
 
       try {
         const { data } = await axiosSecure.post(`/applyJob`, jobData);
-        console.log(data);
+
         if (data.acknowledged) {
           toast.success("Applied Success");
           navigate('/allJobs')
         }
       } catch (err) {
-        console.log(err);
+
         toast.error("You have already Applied this job");
       } 
     }
