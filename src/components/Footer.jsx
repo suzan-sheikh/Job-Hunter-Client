@@ -77,20 +77,16 @@ const Footer = () => {
               <p>Rode No- 205/A, House No-45, Dhaka Cantonment, Dhaka</p>
             </div>
             <div className="flex items-center justify-center gap-2">
-           
               <FaCopyright className="text-cyan-500" />
               <p>Copyright 2024. All Rights Reserved by Md Suzan Sheikh.</p>
             </div>
-
           </div>
 
           <div className="flex flex-col gap-1">
             <p className="text-cyan-500">Contact Us</p>
             <div className="flex items-center justify-center gap-2">
-              
-            <FaSquareWhatsapp className="text-cyan-500 text-3xl" />
-            +88001855189653
-
+              <FaSquareWhatsapp className="text-cyan-500 text-3xl" />
+              +88001855189653
             </div>
           </div>
 
