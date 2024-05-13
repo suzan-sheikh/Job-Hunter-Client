@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const AddJob = () => {
-  const [postDate, setPostDate] = useState(null);
-  const [dedLine, setDedLine] = useState(null);
+  const [postDate, setPostDate] = useState(new Date());
+  const [dedLine, setDedLine] = useState(new Date());
   const navigate = useNavigate();
 
   const { user, loading } = useAuth();

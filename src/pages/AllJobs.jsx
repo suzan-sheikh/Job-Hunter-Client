@@ -8,45 +8,65 @@ const AllJobs = () => {
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [jobs, setJobs] = useState([]);
+  const [search, setSearch] = useState('')
+  const [searchText, setSearchText] = useState('')
 
-  // pagination
 
-  const numberOfPages = Math.ceil(count / itemPerPage);
-
-  const pages = [...Array(Math.ceil(numberOfPages)).keys()].map(
-    (element) => element + 1
-  );
-  const { refetch } = useQuery({
-    queryFn: async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobsCount`);
-      setCount(data.count);
-      refetch();
-      return data;
-    },
-    queryKey: ["count"],
-  });
-  // handle pagination button
-  const handlePaginationButton = (value) => {
-    setCurrentPage(value);
-  };
-  console.log(currentPage, itemPerPage);
 
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/allJobs?page=${currentPage}&size=${itemPerPage}`
+        }/allJobs?page=${currentPage}&size=${itemPerPage}&search=${search}`
       );
       setJobs(data);
     };
     getData();
-  }, [currentPage, itemPerPage]);
+  }, [currentPage, itemPerPage, search]);
+
+
+
+
+  useEffect(() => {
+    const getCount = async () => {
+
+      const { data } = await axios(
+        `${
+          import.meta.env.VITE_API_URL
+        }/jobsCount?search=${search}`
+      )
+      setCount(data.count)
+    }
+    getCount()
+  }, [search])
+
+  // pagination
+  const numberOfPages = Math.ceil(count / itemPerPage);
+
+  const pages = [...Array(Math.ceil(numberOfPages)).keys()].map(
+    (element) => element + 1
+  );
+
+
+  // handle pagination button
+  const handlePaginationButton = (value) => {
+    setCurrentPage(value);
+  };
+  console.log(currentPage, itemPerPage);
+
+
+  const handleSearch = e => {
+    e.preventDefault()
+
+    setSearch(searchText)
+  }
+
 
   return (
     <section className="container px-4 mx-auto pt-4">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2">
-        <form>
+        <form onSubmit={handleSearch}>
           <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
             <input
               className="px-4 py-1 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
@@ -54,6 +74,7 @@ const AllJobs = () => {
               name="search"
               placeholder="Enter Job Title"
               aria-label="Enter Job Title"
+              onChange={e => setSearchText(e.target.value)}
             />
 
             <button className="px-1 md:px-4 py-1 text-sm font-medium tracking-wider hover:bg-emerald-500 bg-blue-500 text-white transition-all">
