@@ -1,48 +1,47 @@
-import { useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const AllJobs = () => {
-  const [itemPerPage, setItemPerPage] = useState(5)
-  const [count, setCount] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [jobs, setJobs] = useState([])
+  const [itemPerPage, setItemPerPage] = useState(5);
+  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [jobs, setJobs] = useState([]);
 
-
-
-  
   // pagination
-  const pages = [...Array(Math.ceil(count / itemPerPage)).keys()].map(element => element + 1);
-  const {refetch} = useQuery({
+
+  const numberOfPages = Math.ceil(count / itemPerPage);
+
+  const pages = [...Array(Math.ceil(numberOfPages)).keys()].map(
+    (element) => element + 1
+  );
+  const { refetch } = useQuery({
     queryFn: async () => {
       const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobsCount`);
-      setCount(data.count)
-      refetch()
-      return data
+      setCount(data.count);
+      refetch();
+      return data;
     },
-    queryKey: ['count'],
+    queryKey: ["count"],
   });
   // handle pagination button
   const handlePaginationButton = (value) => {
-    setCurrentPage(value)
-  }
+    setCurrentPage(value);
+  };
   console.log(currentPage, itemPerPage);
-
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/allJobs?page=${currentPage}&size=${itemPerPage}`)
-      setJobs(data)
-    }
-    getData()
-  }, [currentPage, itemPerPage])
-
-
-
-
-
-
+      const { data } = await axios(
+        `${
+          import.meta.env.VITE_API_URL
+        }/allJobs?page=${currentPage}&size=${itemPerPage}`
+      );
+      setJobs(data);
+    };
+    getData();
+  }, [currentPage, itemPerPage]);
 
   return (
     <section className="container px-4 mx-auto pt-4">
@@ -160,7 +159,11 @@ const AllJobs = () => {
               </table>
 
               <div className="flex justify-center m-12">
-                <button className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-green-500 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white">
+                <button
+                  disabled={currentPage == 1}
+                  onClick={() => handlePaginationButton(currentPage - 1)}
+                  className="px-4 py-2 mx-1 text-white disabled:text-gray-500 capitalize bg-green-500 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white"
+                >
                   <div className="flex items-center -mx-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -183,15 +186,21 @@ const AllJobs = () => {
 
                 {pages.map((btnNum) => (
                   <button
-                  onClick={() => handlePaginationButton(btnNum)}
+                    onClick={() => handlePaginationButton(btnNum)}
                     key={btnNum}
-                    className={`hidden px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
+                    className={`hidden ${
+                      currentPage === btnNum ? "bg-blue-500 text-white" : ""
+                    } px-4 py-2 mx-1 transition-colors duration-300 transform rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
                   >
                     {btnNum}
                   </button>
                 ))}
 
-                <button className="px-4 py-2 mx-1 text-white transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500">
+                <button
+                  disabled={currentPage == numberOfPages}
+                  onClick={() => handlePaginationButton(currentPage + 1)}
+                  className="px-4 py-2 mx-1 text-white transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+                >
                   <div className="flex items-center -mx-1">
                     <span className="mx-1">Next</span>
 
