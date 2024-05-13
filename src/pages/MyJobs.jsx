@@ -1,26 +1,41 @@
-import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Loader from "./Loader";
 
 const MyJobs = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure()
+  const queryClient = useQueryClient()
 
-  const [jobs, setJobs] = useState([]);
-  const [control, setControl] = useState([false]);
 
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`, {withCredentials: true}
-      );
-      setJobs(data);
-    };
-    getData();
-  }, [user, control]);
 
-  const handleDelete = (id) => {
+  const {data: jobs = [], isLoading} = useQuery({
+    queryFn: async () => {
+      const {data} = await axiosSecure(`/jobs/${user?.email}`);
+      return data      
+    },
+    queryKey: ['myJobs'] 
+  })
+
+  const {mutateAsync} = useMutation({
+    mutationFn: async ({id}) => {
+      const {data} = await axiosSecure.delete(`/job/${id}`)
+      return data
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+      queryClient.invalidateQueries({queryKey: ['myJobs']})
+      
+    }
+  })
+  const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -31,22 +46,12 @@ const MyJobs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then( async (result) => {
       if (result.isConfirmed) {
-
-        const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/job/${id}`)
-
-        console.log(data);
-
-        if (data.deletedCount > 0) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
-          setControl(!control);
-        }
+        await mutateAsync({id})  
       }
     });
   };
+
+  if(isLoading) return <Loader/> 
 
   return (
     <section className="container px-4 mx-auto pt-12">

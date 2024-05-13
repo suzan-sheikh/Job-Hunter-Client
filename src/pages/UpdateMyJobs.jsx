@@ -7,9 +7,22 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Loader from "./Loader";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 
 const UpdateMyJobs = () => {
 
+  const {mutateAsync} = useMutation({
+    mutationFn: async({jobData}) => {
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_API_URL}/job/${job._id}`,
+        jobData);
+        return data
+    },
+    onSuccess: () => {
+      toast.success("Update Job Successful");
+      navigate('/myJobs')
+    }
+  })
 
   const job = useLoaderData()
 
@@ -24,7 +37,6 @@ const UpdateMyJobs = () => {
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -54,16 +66,7 @@ const UpdateMyJobs = () => {
     };
 
     try {
-      const { data } = await axios.put(
-        `${import.meta.env.VITE_API_URL}/job/${job._id}`,
-        jobData
-      );
-      console.log(data);
-      if (data.acknowledged) {
-        toast.success("Update Job Successful");
-        navigate('/myJobs')
-        reset();
-      }
+      await mutateAsync({jobData})
     } catch (err) {
       console.log(err);
       toast.error("Update Job Failed");

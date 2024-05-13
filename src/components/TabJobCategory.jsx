@@ -2,20 +2,26 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobCard from "./JobCard";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../pages/Loader";
 
 const TabCategories = () => {
-  const [jobs, setJobs] = useState([])
 
-  useEffect(() => {
-    const getData = async () => {
+  const {data: jobs = [], isLoading} = useQuery({
+    queryFn: async () => {
       const {data} = await axios(`${import.meta.env.VITE_API_URL}/jobs`)
-      setJobs(data)
-    }
-    getData()
-  },[])
+      return data
+    } ,
+    queryKey: ['allJobs']
+  })
 
+    // const getData = async () => {
+    //   const {data} = await axios(`${import.meta.env.VITE_API_URL}/jobs`)
+    //   return data
+    // }
+
+  if(isLoading) return <Loader/>
 
   return (
     <Tabs>

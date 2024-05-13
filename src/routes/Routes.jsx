@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -41,36 +41,59 @@ const router = createBrowserRouter([
         element: <Blog />,
       },
       {
-        path: '/allJobs',
-        element: <AllJobs/>
+        path: "/allJobs",
+        element: <AllJobs />,
       },
       {
-        path: '/job/:id',
-        element: <PrivateRoute><AllJobsDetails/></PrivateRoute>,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`)
+        path: "/job/:id",
+        element: (
+          <PrivateRoute>
+            <AllJobsDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
       },
       {
-        path: '/addJobs',
-        element: <PrivateRoute><AddJob/></PrivateRoute>
+        path: "/addJobs",
+        element: (
+          <PrivateRoute>
+            <AddJob />
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/myJobs',
-        element: <PrivateRoute><MyJobs/></PrivateRoute> 
+        path: "/myJobs",
+        element: (
+          <PrivateRoute>
+            <MyJobs />
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/update/:id',
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
-        element: <UpdateMyJobs/> 
+        path: "/update/:id",
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateMyJobs />{" "}
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/appliedJobs',
-        element: <PrivateRoute><AppliedJobs/></PrivateRoute>
+        path: "/appliedJobs",
+        element: (
+          <PrivateRoute>
+            <AppliedJobs />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/job/:id',
-        element: <JobDetails/>,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`)
-      },             
+        path: "/job/:id",
+        element: <JobDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
+      },
     ],
   },
 ]);

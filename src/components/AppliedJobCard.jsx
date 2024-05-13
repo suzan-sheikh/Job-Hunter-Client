@@ -18,7 +18,6 @@ const AppliedJobCard = ({ job }) => {
     buyer,
   } = job || {};
 
-  console.log(buyer?.email, buyer?.name);
   return (
     <div className="grid md:grid-cols-5 gap-2 border-2 rounded-sm text-black">
       <div className="relative overflow-hidden p-2 md:border-r-2 flex items-center">

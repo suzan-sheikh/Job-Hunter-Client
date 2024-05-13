@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Loader from "./Loader";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const AddJob = () => {
   const [postDate, setPostDate] = useState(null);
@@ -15,9 +16,25 @@ const AddJob = () => {
 
   const { user, loading } = useAuth();
 
+  const queryClient = useQueryClient()
+
+  // useTenStackQuery
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ jobData }) => {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/job`, jobData);
+      return data      
+    },
+    onSuccess: () => {
+      toast.success("Add A job Success");
+      navigate("/myJobs");
+      
+      // refetch()
+      queryClient.invalidateQueries({queryKey: ['allJobs']})
+    }
+  });
+
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -40,23 +57,14 @@ const AddJob = () => {
       description,
       dedLine,
       postDate,
-      buyer : {
+      buyer: {
         email,
-        name
-      }
+        name,
+      },
     };
 
     try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/job`,
-        jobData
-      );
-      console.log(data);
-      if (data.acknowledged) {
-        toast.success("Add A job Success");
-        navigate('/myJobs')
-        reset();
-      }
+      await mutateAsync({ jobData }); 
     } catch (err) {
       console.log(err);
       toast.error("Add Job Failed");

@@ -1,20 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 const AllJobs = () => {
   const pages = [1, 2, 3, 4, 5];
 
-  const [jobs, setJobs] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
+  const { data: jobs = [], isLoading } = useQuery({
+    queryFn: async () => {
       const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
-      setJobs(data);
-    };
-    getData();
-  }, []);
+      return data
+    },
+    queryKey: ['allJobs'],
+  });
 
+  if(isLoading) return <Loader/>
   return (
     <section className="container px-4 mx-auto pt-4">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2">
