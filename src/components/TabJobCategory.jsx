@@ -5,6 +5,7 @@ import JobCard from "./JobCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../pages/Loader";
+import { motion } from "framer-motion";
 
 const TabCategories = () => {
   const { data: jobs = [], isLoading } = useQuery({
@@ -44,13 +45,23 @@ const TabCategories = () => {
             </TabList>
           </div>
         </div>
-
+      
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
+          <motion.section         variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.50,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="show" className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs.map((job) => (
               <JobCard key={job._id} job={job} />
             ))}
-          </div>
+          </motion.section>
         </TabPanel>
 
         <TabPanel>
