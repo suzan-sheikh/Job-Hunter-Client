@@ -2,16 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const AllJobs = () => {
   const [itemPerPage, setItemPerPage] = useState(5);
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [jobs, setJobs] = useState([]);
-  const [search, setSearch] = useState('')
-  const [searchText, setSearchText] = useState('')
-
-
+  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -25,21 +24,15 @@ const AllJobs = () => {
     getData();
   }, [currentPage, itemPerPage, search]);
 
-
-
-
   useEffect(() => {
     const getCount = async () => {
-
       const { data } = await axios(
-        `${
-          import.meta.env.VITE_API_URL
-        }/jobsCount?search=${search}`
-      )
-      setCount(data.count)
-    }
-    getCount()
-  }, [search])
+        `${import.meta.env.VITE_API_URL}/jobsCount?search=${search}`
+      );
+      setCount(data.count);
+    };
+    getCount();
+  }, [search]);
 
   // pagination
   const numberOfPages = Math.ceil(count / itemPerPage);
@@ -48,22 +41,25 @@ const AllJobs = () => {
     (element) => element + 1
   );
 
-
   // handle pagination button
   const handlePaginationButton = (value) => {
     setCurrentPage(value);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
 
-  const handleSearch = e => {
-    e.preventDefault()
-
-
-    setSearch(searchText)
-  }
+    setSearch(searchText);
+  };
+  const websiteName =  'Freelancer';
 
   return (
     <section className="container px-4 mx-auto pt-4">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{websiteName} | All Jobs</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="flex flex-col md:flex-row justify-center items-center gap-2">
         <form onSubmit={handleSearch}>
           <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
@@ -73,7 +69,7 @@ const AllJobs = () => {
               name="search"
               placeholder="Enter Job Title"
               aria-label="Enter Job Title"
-              onChange={e => setSearchText(e.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
             />
 
             <button className="px-1 md:px-4 py-1 text-sm font-medium tracking-wider hover:bg-emerald-500 bg-blue-500 text-white transition-all">

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loader from "./Loader";
+import { Helmet } from "react-helmet";
 
 const MyJobs = () => {
   const { user } = useAuth();
@@ -51,10 +52,19 @@ const MyJobs = () => {
     });
   };
 
-  if(isLoading) return <Loader/> 
+  if(isLoading) return <Loader/>
+  
+  const websiteName =  'Freelancer';
 
   return (
     <section className="container px-4 mx-auto pt-12">
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{websiteName} | My Jobs</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <div className="flex items-center gap-x-3">
         <h2 className="text-lg font-medium text-gray-800 ">My Posted Jobs</h2>
 

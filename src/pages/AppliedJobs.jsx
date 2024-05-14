@@ -3,6 +3,7 @@ import AppliedJobCard from "../components/AppliedJobCard";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "./Loader";
+import { Helmet } from "react-helmet";
 
 const AppliedJobs = () => {
   const { user } = useAuth();
@@ -26,8 +27,18 @@ const AppliedJobs = () => {
 
   if (isLoading) return <Loader />;
 
+  const websiteName =  'Freelancer';
+
   return (
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{websiteName} | Applied Jobs</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
+
+
       <div>
         <div className="flex flex-col md:flex-row justify-center items-center gap-5 ">
           <div>

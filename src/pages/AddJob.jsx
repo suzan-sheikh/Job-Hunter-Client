@@ -8,6 +8,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const AddJob = () => {
   const [postDate, setPostDate] = useState(new Date());
@@ -77,9 +78,17 @@ const AddJob = () => {
   if (loading) {
     return <Loader />;
   }
-
+  const websiteName =  'Freelancer';
   return (
     <div className="container px-4 mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{websiteName} | Add A Jobs</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
+
+
       <section className="flex flex-col md:flex-row p-2 md:p-6 mx-auto rounded-md shadow-md justify-center items-center gap-6 container px-4">
         <div className="w-1/3 shadow-2xl p-4 rounded-lg">
           <img
