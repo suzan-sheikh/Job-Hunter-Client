@@ -10,7 +10,7 @@
     Welcome to [Job Hunter] - your ultimate destination for career opportunities! Whether you're a seasoned professional or just starting out, we've got you covered. Browse through thousands of job listings across various industries, from tech to healthcare, and everything in between. Our user-friendly interface makes job searching a breeze, while our advanced search filters help you pinpoint the perfect match for your skills and preferences. Join [Job Hunter] today and take the next step towards your dream career!"
 </p>
 
-# <a href="https://upwork-8699b.web.app" target="_blank"> Live App Demo</a> 
+# <a href="https://upwork-8699b.web.app" target="_blank">Live App Demo</a>
  
 # Features:
 - Theme Change Light and dark.
