@@ -1,9 +1,14 @@
+import React from 'react';
+import { PDFViewer, PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import useAuth from "../hooks/useAuth";
 import AppliedJobCard from "../components/AppliedJobCard";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
+import { IoMdDownload } from "react-icons/io";
+import MyDocument from '../components/MyDocument';
+
 
 const AppliedJobs = () => {
   const { user } = useAuth();
@@ -27,17 +32,18 @@ const AppliedJobs = () => {
 
   if (isLoading) return <Loader />;
 
-  const websiteName =  'JHunter';
+  const websiteName = "JHunter";
 
   return (
-    <div data-aos="zoom-in" className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
+    <div
+      data-aos="zoom-in"
+      className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between"
+    >
       <Helmet>
         <meta charSet="utf-8" />
         <title>{websiteName} | Applied Jobs</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-
-
 
       <div>
         <div className="flex flex-col md:flex-row justify-center items-center gap-5 ">
@@ -54,14 +60,23 @@ const AppliedJobs = () => {
             </select>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
-          {jobs.map((job) => (
-            <AppliedJobCard key={job._id} job={job} />
-          ))}
+        <div className='flex items-center justify-center mt-4'>
+        <PDFDownloadLink document={<MyDocument jobs={jobs} />} fileName="example.pdf">
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : <button className='flex items-center gap-2 bg-lime-500 hover:bg-pink-500 text-white transition-all px-3 py-1'>Download Summary <IoMdDownload /> </button> 
+          }
+        </PDFDownloadLink>
+
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-6 md:grid-cols-1 lg:grid-cols-2">
+          {jobs.map((job) => (<AppliedJobCard key={job._id} job={job} />))}
         </div>
       </div>
     </div>
   );
 };
+
+
 
 export default AppliedJobs;

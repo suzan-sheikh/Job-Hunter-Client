@@ -2,7 +2,6 @@ import { CiHeart } from "react-icons/ci";
 import { IoStarHalfSharp } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 import { FcImport } from "react-icons/fc";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AppliedJobCard = ({ job }) => {
@@ -63,21 +62,14 @@ const AppliedJobCard = ({ job }) => {
           </div>
         </div>
         <div className="divider p-0 m-0"></div>
-        <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
+        <div className="flex flex-col md:flex-row gap-4 justify-between">
           <div className="flex items-center">
             <p className="text-sm"> sta 01 </p>
             <FcImport className="text-xl" />
           </div>
           <div className="flex items-center gap-2">
             <span className="text-sm">Salary range: </span>
-            <p className="text-sm">
-              {" "}
-              $ {max_salary} to $ {min_salary}{" "}
-            </p>
-          </div>
-          <Link>
-            <span
-              className={`cursor-pointer px-6 py-1 ${
+            <p className={`cursor-pointer px-2 py-1 ${
                 category === "On Site" &&
                 "hover:bg-emerald-500 bg-blue-500 text-white transition-all"
               } ${
@@ -89,11 +81,12 @@ const AppliedJobCard = ({ job }) => {
               }${
                 category === "Hybrid" &&
                 "hover:bg-red-500 bg-red-500 text-white transition-all"
-              }`}
-            >
-              Your Applied Job
-            </span>
-          </Link>
+              } text-sm`}>
+              {" "}
+              $ {max_salary} to $ {min_salary}{" "}
+            </p>
+          </div>
+
         </div>
       </div>
     </div>

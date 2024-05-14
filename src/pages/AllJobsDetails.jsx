@@ -123,25 +123,24 @@ const AllJobsDetails = () => {
               <CiHeart className="text-xl text-green-500" />
             </div>
             <p className="text-sm">Posted By: {buyer?.name}</p>
-
-            <div className="divider p-0 m-0"></div>
-            <div>
-              <p>{description}</p>
-            </div>
-            <div className="flex flex-col ite md:flex-row gap-4 items-center justify-between">
-              <div className="flex items-center">
+            <div className="flex items-center">
                 <p className="text-sm"> 01 </p>
                 <FcImport className="text-xl" />
               </div>
+
+            <div className="divider p-0 m-0"></div>
+            <div>
+              <p className="text-center md:text-left">{description}</p>
+            </div>
+            <div className="flex flex-col ite md:flex-row gap-4 items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-sm hidden md:flex">Salary range: </span>
                 <span className="bg-[#ffb607] text-white px-6 flex items-center w-38 gap-2">
                   <IoStarHalfSharp />$ 1250 To $ 2150
                 </span>
               </div>
               <span
                 onClick={handleApply}
-                className="hover:bg-[#ffb607] transition-all cursor-pointer bg-[#186fc9] text-white px-6 py-1"
+                className="hover:bg-[#ffb607] transition-all cursor-pointer bg-[#186fc9] text-white px-6 py-1 text-center"
               >
                 Apply Now
               </span>
