@@ -65,43 +65,83 @@ const TabCategories = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
+          <motion.section variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.50,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="show" className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs
               .filter((j) => j.category === "On Site")
               .map((job) => (
                 <JobCard key={job._id} job={job} />
               ))}
-          </div>
+          </motion.section>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
+          <motion.section variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.50,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="show" className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs
               .filter((j) => j.category === "Remote")
               .map((job) => (
                 <JobCard key={job._id} job={job} />
               ))}
-          </div>
+          </motion.section>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
+          <motion.section variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.50,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="show" className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs
               .filter((j) => j.category === "Hybrid")
               .map((job) => (
                 <JobCard key={job._id} job={job} />
               ))}
-          </div>
+          </motion.section>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
+          <motion.section variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.50,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="show" className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-1 lg:grid-cols-2">
             {jobs
               .filter((j) => j.category === "Part Time")
               .map((job) => (
                 <JobCard key={job._id} job={job} />
               ))}
-          </div>
+          </motion.section>
         </TabPanel>
       </div>
     </Tabs>
