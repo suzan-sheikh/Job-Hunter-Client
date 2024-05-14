@@ -52,9 +52,10 @@ const AppliedJobs = () => {
               className="border p-2 rounded-lg"
             >
               <option value="">Filter By Category</option>
-              <option value="Web Development">On Site Job</option>
-              <option value="Graphics Design">Remote Job</option>
-              <option value="Digital Marketing">Part Time Job</option>
+              <option value="On Site">On Site Job</option>
+              <option value="Remote">Remote Job</option>
+              <option value="Part Time">Part Time Job</option>
+              <option value="Hybrid">Hybrid Job</option>
             </select>
           </div>
         </div>
