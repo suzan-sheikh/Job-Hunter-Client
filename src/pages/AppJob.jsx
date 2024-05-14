@@ -1,34 +1,36 @@
-import React, { useState, useEffect } from 'react';
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "./Loader";
 import { Helmet } from "react-helmet";
 import { IoMdDownload } from "react-icons/io";
 import MyDocument from "../components/MyDocument";
-import axios from "axios";
-import useAuth from "../hooks/useAuth";
 
 const AppliedJobs = () => {
   const { user } = useAuth();
-  const [jobs, setJobs] = useState([]);
-  const [filter, setFilter] = useState('');
+  const {
+    data: jobs = [],
+    isLoading,
+    refetch,
+    isError,
+    error,
+  } = useQuery({
+    queryFn: () => getData(),
+    queryKey: ["applyJobs"],
+  });
+
+  const axiosSecure = useAxiosSecure();
+
+  const getData = async () => {
+    const { data } = await axiosSecure(`/applyJob/${user?.email}`);
+    return data;
+  };
+  
+
+  if (isLoading) return <Loader />;
+
   const websiteName = "JHunter";
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/applyJob/${encodeURIComponent(user?.email)}?filter=${encodeURIComponent(filter)}`, {
-          withCredentials: true
-        });
-        setJobs(response.data) 
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [filter, user]);
-
-  console.log(jobs);
 
   return (
     <div
@@ -45,8 +47,6 @@ const AppliedJobs = () => {
         <div className="flex flex-col md:flex-row justify-center items-center gap-5 ">
           <div>
             <select
-              onChange={e=>setFilter(e.target.value)}
-              value={filter}
               name="category"
               id="category"
               className="border p-2 rounded-lg"
@@ -63,11 +63,15 @@ const AppliedJobs = () => {
             document={<MyDocument jobs={jobs} />}
             fileName="example.pdf"
           >
-            {({ loading }) => (
-              <button className="flex items-center gap-2 bg-lime-500 hover:bg-pink-500 text-white transition-all px-3 py-1">
-                {loading ? "Loading document..." : "Download Summary"} <IoMdDownload />{" "}
-              </button>
-            )}
+            {({ blob, url, loading, error }) =>
+              loading ? (
+                "Loading document..."
+              ) : (
+                <button className="flex items-center gap-2 bg-lime-500 hover:bg-pink-500 text-white transition-all px-3 py-1">
+                  Download Summary <IoMdDownload />{" "}
+                </button>
+              )
+            }
           </PDFDownloadLink>
         </div>
 
@@ -78,7 +82,7 @@ const AppliedJobs = () => {
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
-              {jobs.length} Jobs
+              05 Jobs
             </span>
           </div>
 
@@ -87,7 +91,7 @@ const AppliedJobs = () => {
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div className="overflow-hidden border border-gray-200  md:rounded-lg">
                   <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                    <thead className="bg-gray-50">
                       <tr>
                         <th
                           scope="col"
@@ -204,4 +208,4 @@ const AppliedJobs = () => {
   );
 };
 
-export default AppliedJobs;
+// export default AppliedJobs;

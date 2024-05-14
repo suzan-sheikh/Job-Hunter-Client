@@ -21,6 +21,7 @@ const AllJobsDetails = () => {
 
 
   const {
+    _id,
     photoURL,
     job_title,
     category,
@@ -31,6 +32,9 @@ const AllJobsDetails = () => {
     min_salary,
     max_salary,
   } = job || {};
+
+  
+  const jobId = _id;
   
   const handleApply = async () => {
 
@@ -73,6 +77,7 @@ const AllJobsDetails = () => {
       }
 
       const jobData = {
+        jobId,
         photoURL,
         job_title,
         category,
@@ -86,6 +91,7 @@ const AllJobsDetails = () => {
         email,
         name,
       };
+      console.log(jobData);
 
       try {
         const { data } = await axiosSecure.post(`/applyJob`, jobData);
@@ -95,8 +101,7 @@ const AllJobsDetails = () => {
           navigate('/allJobs')
         }
       } catch (err) {
-
-        toast.error("You have already Applied this job");
+        toast.error("Already Applied this job");
       } 
     }
   }
