@@ -78,7 +78,7 @@ const AddJob = () => {
   if (loading) {
     return <Loader />;
   }
-  const websiteName =  'Freelancer';
+  const websiteName =  'JHunter';
   return (
     <div className="container px-4 mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <Helmet>

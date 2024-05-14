@@ -27,7 +27,7 @@ const AppliedJobs = () => {
 
   if (isLoading) return <Loader />;
 
-  const websiteName =  'Freelancer';
+  const websiteName =  'JHunter';
 
   return (
     <div data-aos="zoom-in" className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 
 const Blog = () => {
 
-const websiteName =  'Freelancer';
+const websiteName =  'JHunter';
   return (
     <div>
       <Helmet>

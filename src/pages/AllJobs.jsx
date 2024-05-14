@@ -51,7 +51,7 @@ const AllJobs = () => {
 
     setSearch(searchText);
   };
-  const websiteName =  'Freelancer';
+  const websiteName =  'JHunter';
 
   return (
     <section data-aos="zoom-in" className="container px-4 mx-auto pt-4">

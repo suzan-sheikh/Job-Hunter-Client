@@ -5,8 +5,8 @@ import Faq from "../components/Faq";
 import TabJobCategory from "../components/TabJobCategory";
 
 const Home = () => {
-    const websiteName =  'Freelancer';
-    
+  const websiteName = "JHunter";
+
   return (
     <div>
       <Helmet>
