@@ -6,6 +6,7 @@ import TabJobCategory from "../components/TabJobCategory";
 
 const Home = () => {
     const websiteName =  'Freelancer';
+    
   return (
     <div>
       <Helmet>

@@ -54,7 +54,7 @@ const AllJobs = () => {
   const websiteName =  'Freelancer';
 
   return (
-    <section className="container px-4 mx-auto pt-4">
+    <section data-aos="zoom-in" className="container px-4 mx-auto pt-4">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{websiteName} | All Jobs</title>

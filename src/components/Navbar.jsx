@@ -120,7 +120,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="container py-3 sm:py-1 mx-auto px-4">
+        <div data-aos="zoom-out" className="container py-3 sm:py-1 mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4 font-bold text-xl">
               <Link to={"/"} onClick={() => window.scrollTo(0, 0)}>

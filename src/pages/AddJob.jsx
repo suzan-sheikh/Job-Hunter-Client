@@ -90,7 +90,7 @@ const AddJob = () => {
 
 
       <section className="flex flex-col md:flex-row p-2 md:p-6 mx-auto rounded-md shadow-md justify-center items-center gap-6 container px-4">
-        <div className="w-1/3 shadow-2xl p-4 rounded-lg">
+        <div data-aos="fade-right" className="w-1/3 shadow-2xl p-4 rounded-lg">
           <img
             className="rounded-lg"
             src="https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -98,7 +98,7 @@ const AddJob = () => {
           />
         </div>
 
-        <form
+        <form data-aos="fade-left"
           onSubmit={handleSubmit(onSubmit)}
           className="shadow-2xl p-4 rounded-lg"
         >

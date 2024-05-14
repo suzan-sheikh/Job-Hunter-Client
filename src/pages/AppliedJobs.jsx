@@ -30,7 +30,7 @@ const AppliedJobs = () => {
   const websiteName =  'Freelancer';
 
   return (
-    <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
+    <div data-aos="zoom-in" className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{websiteName} | Applied Jobs</title>

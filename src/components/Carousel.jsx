@@ -15,7 +15,7 @@ const bgimg3 = 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=8
 
 export default function Carousel() {
   return (
-    <div className='container px-4 py-2 mx-auto'>
+    <div data-aos="zoom-in" className='container px-4 py-2 mx-auto'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

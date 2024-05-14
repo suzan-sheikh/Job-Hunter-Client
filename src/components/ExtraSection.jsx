@@ -1,7 +1,7 @@
 const ExtraSection = () => {
   return (
     <div>
-      <div className="container px-4 mx-auto">
+      <div data-aos="flip-right" className="container px-4 mx-auto">
         <div className="divider p-0 m-0"></div>
         <div className="flex flex-col md:flex-row items-center gap-4 justify-between my-20">
           <div className="md:w-1/2 space-y-4">

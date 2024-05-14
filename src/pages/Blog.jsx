@@ -13,14 +13,14 @@ const websiteName =  'Freelancer';
 
       <section className="bg-gray-100 text-gray-800">
         <div className="container p-6 mx-auto space-y-8 px-4">
-          <div className="space-y-2 text-center">
+          <div data-aos="zoom-in" className="space-y-2 text-center">
             <h2 className="text-3xl font-bold">Blogs Section</h2>
             <p className="font-serif text-sm text-gray-600">
               Where Curiosity Meets Code: Exploring the World of Programming.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-            <article className="flex flex-col bg-gray-50">
+            <article data-aos="flip-left" className="flex flex-col bg-gray-50">
               <a
                 rel="noopener noreferrer"
                 href="#"
@@ -64,7 +64,7 @@ const websiteName =  'Freelancer';
               </div>
             </article>
 
-            <article className="flex flex-col bg-gray-50">
+            <article data-aos="flip-left" className="flex flex-col bg-gray-50">
               <a
                 rel="noopener noreferrer"
                 href="#"
@@ -109,7 +109,7 @@ const websiteName =  'Freelancer';
               </div>
             </article>
 
-            <article className="flex flex-col bg-gray-50">
+            <article data-aos="flip-left" className="flex flex-col bg-gray-50">
               <a
                 rel="noopener noreferrer"
                 href="#"
