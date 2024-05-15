@@ -5,8 +5,17 @@ import { FcImport } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const JobCard = ({ job }) => {
+  const { user } = useAuth();
+
+  const handleDetailsClick = () => {
+    if (!user) {
+      toast.error("You have to log in first to view details");
+    }
+  };
   const {
     _id,
     photoURL,
@@ -17,12 +26,17 @@ const JobCard = ({ job }) => {
     dedLine,
     postDate,
     buyer,
-    jobId,
-    job_applicant_number
+    job_applicant_number,
   } = job || {};
 
   return (
-    <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 1, ease: "easeInOut" } } }} className="grid md:grid-cols-5 gap-2 border-2 rounded-sm text-black">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0 },
+        show: { opacity: 1, transition: { duration: 1, ease: "easeInOut" } },
+      }}
+      className="grid md:grid-cols-5 gap-2 border-2 rounded-sm text-black"
+    >
       <div className="relative overflow-hidden p-2 md:border-r-2 flex items-center">
         <span className="absolute transform rotate-[-45deg] bg-[#e12335] text-white px-8 top-2 left-[-34px] text-sm">
           {category}
@@ -80,7 +94,7 @@ const JobCard = ({ job }) => {
             </p>
           </div>
 
-          <Link to={`/job/${_id}`}>
+          <Link to={`/job/${_id}`} onClick={handleDetailsClick}>
             <span
               className={`cursor-pointer px-6 py-1 ${
                 category === "On Site" &&
@@ -101,7 +115,7 @@ const JobCard = ({ job }) => {
           </Link>
         </div>
       </div>
-    </motion.div >
+    </motion.div>
   );
 };
 

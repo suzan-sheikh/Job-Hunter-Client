@@ -12,9 +12,6 @@ const AppliedJobs = () => {
   const {
     data: jobs = [],
     isLoading,
-    refetch,
-    isError,
-    error,
   } = useQuery({
     queryFn: () => getData(),
     queryKey: ["applyJobs"],
@@ -63,7 +60,7 @@ const AppliedJobs = () => {
             document={<MyDocument jobs={jobs} />}
             fileName="example.pdf"
           >
-            {({ blob, url, loading, error }) =>
+            {({loading}) =>
               loading ? (
                 "Loading document..."
               ) : (
@@ -208,4 +205,4 @@ const AppliedJobs = () => {
   );
 };
 
-// export default AppliedJobs;
+export default AppliedJobs;

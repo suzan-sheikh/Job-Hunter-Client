@@ -17,7 +17,7 @@ const Home = () => {
       <Carousel />
       <TabJobCategory />
       <Faq />
-      <ExtraSection />    
+      <ExtraSection />  
     </div>
   );
 };
