@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const AllJobs = () => {
   const [itemPerPage, setItemPerPage] = useState(5);
@@ -51,6 +53,17 @@ const AllJobs = () => {
 
     setSearch(searchText);
   };
+
+  const { user } = useAuth();
+
+  const handleDetailsClick = () => {
+    if (!user) {
+      toast.error("You have to log in first to view details");
+    }
+  };
+
+
+
   const websiteName =  'JHunter';
 
   return (
@@ -148,7 +161,7 @@ const AllJobs = () => {
                         </span>
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <Link to={`/job/${job._id}`}>
+                        <Link to={`/job/${job._id}`} onClick={handleDetailsClick}>
                           <span
                             className={`px-6 py-1 ${
                               job.category === "On Site" &&
