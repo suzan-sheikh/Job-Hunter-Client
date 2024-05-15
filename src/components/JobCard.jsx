@@ -35,7 +35,7 @@ const JobCard = ({ job }) => {
         hidden: { opacity: 0 },
         show: { opacity: 1, transition: { duration: 1, ease: "easeInOut" } },
       }}
-      className="grid md:grid-cols-5 gap-2 border-2 rounded-sm text-black"
+      className="grid md:grid-cols-5 gap-2 border-2 rounded-sm"
     >
       <div className="relative overflow-hidden p-2 md:border-r-2 flex items-center">
         <span className="absolute transform rotate-[-45deg] bg-[#e12335] text-white px-8 top-2 left-[-34px] text-sm">
@@ -47,7 +47,7 @@ const JobCard = ({ job }) => {
       </div>
       <div className="md:col-span-4 p-2 space-y-2">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold text-black">{job_title}</h2>
+          <h2 className="text-lg font-bold">{job_title}</h2>
           <CiHeart className="text-xl text-green-500" />
         </div>
         <p className="text-sm">{buyer?.name}</p>

@@ -127,7 +127,7 @@ const Login = () => {
                 id="LoggingEmailAddress"
                 autoComplete="email"
                 name="email"
-                className="block w-full px-4 py-1 text-gray-500 border rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-1 text-gray-500 border rounded-lg bg-white  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="email"
                 {...register("email", { required: true })}
               />
@@ -150,7 +150,7 @@ const Login = () => {
                 id="loggingPassword"
                 autoComplete="current-password"
                 name="password"
-                className="block w-full px-4 py-1 text-gray-500  border rounded-lg focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-1 text-gray-500 bg-white  border rounded-lg focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="password"
                 {...register("password", { required: true })}
               />

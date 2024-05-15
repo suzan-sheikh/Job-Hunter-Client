@@ -78,7 +78,7 @@ const AddJob = () => {
   if (loading) {
     return <Loader />;
   }
-  const websiteName =  'JHunter';
+  const websiteName = "JHunter";
   return (
     <div className="container px-4 mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <Helmet>
@@ -86,8 +86,6 @@ const AddJob = () => {
         <title>{websiteName} | Add A Jobs</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-
-
 
       <section className="flex flex-col md:flex-row p-2 md:p-6 mx-auto rounded-md shadow-md justify-center items-center gap-6 container px-4">
         <div data-aos="fade-right" className="w-1/3 shadow-2xl p-4 rounded-lg">
@@ -98,7 +96,8 @@ const AddJob = () => {
           />
         </div>
 
-        <form data-aos="fade-left"
+        <form
+          data-aos="fade-left"
           onSubmit={handleSubmit(onSubmit)}
           className="shadow-2xl p-4 rounded-lg"
         >

@@ -111,11 +111,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 right-0 w-full z-50 backdrop-blur-sm text-black shadow-md">
-        <div className="bg-gradient-to-r from-primary to-secondary text-white py-2">
+      <nav className="fixed top-0 right-0 w-full z-50 bg-white text-black shadow-md">
+        <div className="bg-gradient-to-r from-primary to-secondary py-2">
           <div className="container sm:block hidden mx-auto px-4">
             <div className="flex items-center justify-between">
-              <p className="text-sm">World Best Job Hunting Website</p>
+              <p className="text-sm ">World Best Job Hunting Website</p>
               <p className="text-sm">Mobile: +8801855189653</p>
             </div>
           </div>
@@ -197,7 +197,7 @@ const Navbar = () => {
                     onChange={handleTheme}
                     type="checkbox"
                     className="theme-controller"
-                    value="synthwave"
+                    value="dark"
                   />
 
                   {/* sun icon */}

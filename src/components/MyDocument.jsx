@@ -1,9 +1,8 @@
-
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
 const MyDocument = ({ jobs }) => {
   let serialNumber = 0; // Initialize serial number variable
-  
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -23,12 +22,14 @@ const MyDocument = ({ jobs }) => {
               <Text style={styles.tableCellHeader}>Deadline</Text>
               {/* Add more columns as needed */}
             </View>
-            {jobs.map(job => (
+            {jobs.map((job) => (
               <View key={job._id} style={styles.tableRow}>
                 <Text style={styles.tableCell}>{++serialNumber}</Text>
                 <Text style={styles.tableCell}>{job.job_title}</Text>
                 <Text style={styles.tableCell}>{job.category}</Text>
-                <Text style={styles.tableCell}>${`${job.min_salary} - ${job.max_salary}`}</Text>
+                <Text style={styles.tableCell}>
+                  ${`${job.min_salary} - ${job.max_salary}`}
+                </Text>
                 <Text style={styles.tableCell}>{formatDate(job.postDate)}</Text>
                 <Text style={styles.tableCell}>{formatDate(job.dedLine)}</Text>
                 {/* Add more cells for additional job information */}
@@ -39,7 +40,7 @@ const MyDocument = ({ jobs }) => {
       </Page>
     </Document>
   );
-}
+};
 
 // Function to format date string
 const formatDate = (dateString) => {

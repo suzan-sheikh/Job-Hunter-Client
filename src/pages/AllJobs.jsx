@@ -84,11 +84,11 @@ const AllJobs = () => {
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="">
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Title</span>
@@ -97,21 +97,21 @@ const AllJobs = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right "
                     >
                       <span>Posting Date</span>
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right "
                     >
                       <span>Deadline</span>
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right "
                     >
                       <button className="flex items-center gap-x-2">
                         <span> Salary Range</span>
@@ -120,28 +120,28 @@ const AllJobs = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right "
                     >
                       Remarks
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 ">
+                <tbody className="divide-y divide-gray-200 ">
                   {jobs.map((job) => (
                     <tr key={job._id}>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm   whitespace-nowrap">
                         {job.job_title}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
                         {new Date(job.postDate).toLocaleDateString()}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
                         {new Date(job.dedLine).toLocaleDateString()}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <span>
                           {" "}
                           $ {job.max_salary} to $ {job.min_salary}

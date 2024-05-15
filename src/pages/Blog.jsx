@@ -11,16 +11,16 @@ const websiteName =  'JHunter';
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      <section className="bg-gray-100 text-gray-800">
+      <section className="">
         <div className="container p-6 mx-auto space-y-8 px-4">
           <div data-aos="zoom-in" className="space-y-2 text-center">
             <h2 className="text-3xl font-bold">Blogs Section</h2>
-            <p className="font-serif text-sm text-gray-600">
+            <p className="font-serif text-sm">
               Where Curiosity Meets Code: Exploring the World of Programming.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-            <article data-aos="flip-left" className="flex flex-col bg-gray-50">
+            <article data-aos="flip-left" className="flex flex-col ">
               <a
                 rel="noopener noreferrer"
                 href="#"
@@ -28,7 +28,7 @@ const websiteName =  'JHunter';
               >
                 <img
                   alt=""
-                  className="object-cover w-full h-52 bg-gray-500"
+                  className="object-cover w-full h-52"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXao6E8pPuqqwt7C_HMZwjCapJQhKvzBqfrg&usqp=CAU"
                 />
               </a>
@@ -57,14 +57,14 @@ const websiteName =  'JHunter';
                   attacks.
                 </p>
 
-                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-600">
+                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs">
                   <span>May 10, 2024</span>
                   <span>2.1K views</span>
                 </div>
               </div>
             </article>
 
-            <article data-aos="flip-left" className="flex flex-col bg-gray-50">
+            <article data-aos="flip-left" className="flex flex-col">
               <a
                 rel="noopener noreferrer"
                 href="#"
@@ -72,7 +72,7 @@ const websiteName =  'JHunter';
               >
                 <img
                   alt=""
-                  className="object-cover w-full h-52 bg-gray-500"
+                  className="object-cover w-full h-52"
                   src="https://media-cdn.openxcell.com/wp-content/uploads/2024/03/29174300/Next-JS-Vs-Express_-An-In-depth.webp"
                 />
               </a>
@@ -102,14 +102,14 @@ const websiteName =  'JHunter';
                   advanced features for React applications.
                 </p>
 
-                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-600">
+                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs ">
                   <span>May 09, 2024</span>
                   <span>2.1K views</span>
                 </div>
               </div>
             </article>
 
-            <article data-aos="flip-left" className="flex flex-col bg-gray-50">
+            <article data-aos="flip-left" className="flex flex-col">
               <a
                 rel="noopener noreferrer"
                 href="#"
@@ -117,7 +117,7 @@ const websiteName =  'JHunter';
               >
                 <img
                   alt=""
-                  className="object-cover w-full h-52 bg-gray-500"
+                  className="object-cover w-full h-52"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjiz9bmgvj7MLGKx6OLUbMzLhBzhRtx-2cpg&usqp=CAU"
                 />
               </a>
@@ -143,7 +143,7 @@ const websiteName =  'JHunter';
                   etc
                 </p>
 
-                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-600">
+                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs">
                   <span>May 11, 2024</span>
                   <span>2.1K views</span>
                 </div>

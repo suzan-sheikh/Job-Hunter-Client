@@ -11,13 +11,13 @@ function Faq() {
   };
 
   return (
-    <section data-aos="flip-left" className="bg-white dark:bg-gray-900 ">
+    <section data-aos="flip-left" className="">
       <div className="container px-6 py-10 mx-auto">
-        <h1 className="text-2xl font-semibold text-blue-500 lg:text-3xl dark:text-white text-center">
+        <h1 className="text-2xl font-semibold text-blue-500 lg:text-3xl text-center">
         FAQ
         </h1>
 
-        <hr className="my-6 border-gray-200 dark:border-gray-700" />
+        <hr className="my-6 border-gray-200 " />
 
         <div>
           <div>
@@ -40,7 +40,7 @@ function Faq() {
                 ></path>
               </svg>
 
-              <h1 className="mx-4 text-md md:text-xl text-gray-700 dark:text-white">
+              <h1 className="mx-4 text-md md:text-xl">
                 What should I include in my resume?
               </h1>
             </button>
@@ -49,7 +49,7 @@ function Faq() {
               <div className="flex mt-8 md:mx-10">
                 <span className="border border-blue-500"></span>
 
-                <p className="max-w-3xl text-md text-justify px-4 text-gray-500 dark:text-gray-300">
+                <p className="max-w-3xl text-md text-justify px-4">
                   Contact info, summary, work history, education, skills, and
                   certifications tailored to match job requirements for maximum
                   impact.
@@ -57,7 +57,7 @@ function Faq() {
               </div>
             )}
           </div>
-          <hr className="my-6 border-gray-200 dark:border-gray-700" />
+          <hr className="my-6 border-gray-200 " />
           <div>
             <button
               className="flex items-center focus:outline-none"
@@ -78,7 +78,7 @@ function Faq() {
                 ></path>
               </svg>
 
-              <h1 className="mx-4 text-md md:text-xl text-gray-700 dark:text-white">
+              <h1 className="mx-4 text-md md:text-xl">
                 How do I make my job application stand out?
               </h1>
             </button>
@@ -87,7 +87,7 @@ function Faq() {
               <div className="flex mt-8 md:mx-10">
                 <span className="border border-blue-500"></span>
 
-                <p className="max-w-3xl text-md text-justify px-4 text-gray-500 dark:text-gray-300">
+                <p className="max-w-3xl text-md text-justify px-4">
                   Customize your resume, highlight relevant skills, follow
                   instructions, and submit documents promptly to increase
                   visibility and appeal.
@@ -95,7 +95,7 @@ function Faq() {
               </div>
             )}
           </div>
-          <hr className="my-6 border-gray-200 dark:border-gray-700" />
+          <hr className="my-6 " />
           <div>
             <button
               className="flex items-center focus:outline-none"
@@ -116,7 +116,7 @@ function Faq() {
                 ></path>
               </svg>
 
-              <h1 className="mx-4 text-md md:text-xl text-gray-700 dark:text-white">
+              <h1 className="mx-4 text-md md:text-xl">
                 How can I catch employers attention with my resume?
               </h1>
             </button>
@@ -125,7 +125,7 @@ function Faq() {
               <div className="flex mt-8 md:mx-10">
                 <span className="border border-blue-500"></span>
 
-                <p className="max-w-3xl text-md text-justify px-4 text-gray-500 dark:text-gray-300">
+                <p className="max-w-3xl text-md text-justify px-4">
                   Highlight key achievements, quantify accomplishments, and
                   tailor content to match job requirements to grab employers
                   attention effectively.
@@ -133,7 +133,7 @@ function Faq() {
               </div>
             )}
           </div>
-          <hr className="my-8 border-gray-200 dark:border-gray-700" />
+          <hr className="my-8 border-gray-200" />
         </div>
       </div>
     </section>

@@ -40,7 +40,7 @@ const TabCategories = () => {
     <Tabs data-aos="fade-up">
       <div className=" container px-4 py-6 mx-auto">
         <div data-aos="flip-up">
-          <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl uppercase ">
+          <h1 className="text-2xl font-semibold text-center lg:text-3xl uppercase ">
             Job by Category Section
           </h1>
 
