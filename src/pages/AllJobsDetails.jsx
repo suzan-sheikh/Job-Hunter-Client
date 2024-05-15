@@ -91,6 +91,7 @@ const AllJobsDetails = () => {
         resumeLink,
         email,
         name,
+        job_applicant_number
       };
       console.log(jobData);
 
