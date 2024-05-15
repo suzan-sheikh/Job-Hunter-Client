@@ -17,7 +17,8 @@ const JobCard = ({ job }) => {
     dedLine,
     postDate,
     buyer,
-    jobId
+    jobId,
+    job_applicant_number
   } = job || {};
 
   return (
@@ -67,8 +68,9 @@ const JobCard = ({ job }) => {
         <div className="divider p-0 m-0"></div>
         <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
           <div className="flex items-center">
-            <p className="text-sm"> {jobId}</p>
+            <p className="text-sm"> {job_applicant_number}</p>
             <FcImport className="text-xl" />
+            <p className="text-sm">Apply Num</p>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-sm">Salary range: </span>

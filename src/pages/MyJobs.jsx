@@ -133,7 +133,7 @@ const MyJobs = () => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200 ">
-                  {jobs.map((job) => (
+                  {jobs?.map((job) => (
                     <tr key={job._id}>
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">

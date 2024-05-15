@@ -65,7 +65,7 @@ const AddJob = () => {
         email,
         name,
       },
-      jobId: 0,
+      job_applicant_number: 0,
     };
 
     try {
@@ -93,7 +93,7 @@ const AddJob = () => {
         <div data-aos="fade-right" className="w-1/3 shadow-2xl p-4 rounded-lg">
           <img
             className="rounded-lg"
-            src="https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGNvZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
             alt="job image"
           />
         </div>

@@ -31,6 +31,7 @@ const AllJobsDetails = () => {
     postDate,
     min_salary,
     max_salary,
+    job_applicant_number,
   } = job || {};
 
   
@@ -129,7 +130,7 @@ const AllJobsDetails = () => {
             </div>
             <p className="text-sm">Posted By: {buyer?.name}</p>
             <div className="flex items-center">
-                <p className="text-sm"> 01 </p>
+                <p className="text-sm"> {job_applicant_number} </p>
                 <FcImport className="text-xl" />
               </div>
 
