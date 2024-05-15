@@ -2,26 +2,39 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobCard from "./JobCard";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-import Loader from "../pages/Loader";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const TabCategories = () => {
-  const { data: jobs = [], isLoading } = useQuery({
+  const [searchText, setSearchText] = useState("");
+
+  const {
+    data: jobs = [],
+    refetch,
+  } = useQuery({
+    queryKey: ["jobs", searchText],
     queryFn: async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
-      return data;
+      try {
+        const url =
+          searchText.trim() === ""
+            ? `${import.meta.env.VITE_API_URL}/jobsSearch`
+            : `${import.meta.env.VITE_API_URL}/jobsSearch?search=${searchText}`;
+        const { data } = await axios.get(url);
+        return data;
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        throw new Error("Error fetching jobs");
+      }
     },
-    queryKey: ["allJobs"],
   });
 
-  // const getData = async () => {
-  //   const {data} = await axios(`${import.meta.env.VITE_API_URL}/jobs`)
-  //   return data
-  // }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    refetch();
+  };
 
-  if (isLoading) return <Loader />;
 
   return (
     <Tabs data-aos="fade-up">
@@ -37,12 +50,14 @@ const TabCategories = () => {
           </p>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-2 mb-4">
-            <form>
+            <form onSubmit={handleSearch}>
               <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
                 <input
                   className="px-4 py-1 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                   type="text"
                   name="search"
+                  onChange={(e) => setSearchText(e.target.value)}
+                  value={searchText}
                   placeholder="Enter Job Title"
                   aria-label="Enter Job Title"
                 />

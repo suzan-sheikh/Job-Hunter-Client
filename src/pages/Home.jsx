@@ -3,6 +3,7 @@ import Carousel from "../components/Carousel";
 import ExtraSection from "../components/ExtraSection";
 import Faq from "../components/Faq";
 import TabJobCategory from "../components/TabJobCategory";
+import YourComponent from "./YourComponent";
 
 const Home = () => {
   const websiteName = "JHunter";
@@ -17,7 +18,8 @@ const Home = () => {
       <Carousel />
       <TabJobCategory />
       <Faq />
-      <ExtraSection />
+      <ExtraSection />    
+      <YourComponent/>  
     </div>
   );
 };

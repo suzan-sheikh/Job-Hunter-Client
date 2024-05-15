@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from 'react';
+
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Helmet } from "react-helmet";
 import { IoMdDownload } from "react-icons/io";
 import MyDocument from "../components/MyDocument";
-import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import { useEffect, useState } from "react";
 
 const AppliedJobs = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   const [filter, setFilter] = useState('');
+
+  const axiosSecure = useAxiosSecure();
+
   const websiteName = "JHunter";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/applyJob/${encodeURIComponent(user?.email)}?filter=${encodeURIComponent(filter)}`, {
+        const response = await axiosSecure(`${import.meta.env.VITE_API_URL}/applyJob/${encodeURIComponent(user?.email)}?filter=${encodeURIComponent(filter)}`, {
           withCredentials: true
         });
         setJobs(response.data) 
@@ -26,7 +30,7 @@ const AppliedJobs = () => {
     };
 
     fetchData();
-  }, [filter, user]);
+  }, [axiosSecure, filter, user]);
 
   console.log(jobs);
 
