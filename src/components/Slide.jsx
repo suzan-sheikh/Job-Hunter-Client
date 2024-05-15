@@ -13,13 +13,29 @@ const Slide = ({ image, text }) => {
           <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
             {text}
           </h1>
+
           <br />
-          <Link
-            to='/add-job'
-            className='w-full px-5 py-4 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-gray-600 rounded-md lg:w-auto hover:bg-gray-500 focus:outline-none focus:bg-gray-500'
-          >
-            Post Job & Hire Expert
-          </Link>
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-2 mb-4">
+            <form >
+              {/* onSubmit={handleSearch} */}
+              <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
+                <input
+                  className="px-4 py-1 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
+                  type="text"
+                  name="search"
+                  // onChange={(e) => setSearchText(e.target.value)}
+                  // value={searchText}
+                  placeholder="Enter Job Title"
+                  aria-label="Enter Job Title"
+                />
+
+                <button className="px-1 md:px-4 py-1 text-sm font-medium tracking-wider hover:bg-emerald-500 bg-blue-500 text-white transition-all">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

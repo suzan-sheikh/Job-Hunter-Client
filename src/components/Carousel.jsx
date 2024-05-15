@@ -33,19 +33,19 @@ export default function Carousel() {
         <SwiperSlide className='rounded-xl'>
           <Slide
             image={bgimg1}
-            text='Get Your Web Development Projects Done in minutes'
+            text='Discover Your Dream Job: Explore, Apply, and Succeed with Ease.'
           />
         </SwiperSlide>
         <SwiperSlide className='rounded-xl'>
           <Slide
             image={bgimg2}
-            text='Get Your Graphics Design Projects Done in minutes'
+            text='Find Your Perfect Fit: Unlock Opportunities and Propel Your Career Forward.'
           />
         </SwiperSlide>
         <SwiperSlide className='rounded-xl'>
           <Slide
             image={bgimg3}
-            text='Start Your Digital Marketing Campaigns up n running'
+            text='Your Career Journey Starts Here: Navigate, Apply, and Thrive Professionally.'
           />
         </SwiperSlide>
       </Swiper>
