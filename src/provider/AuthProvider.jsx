@@ -53,12 +53,27 @@ const AuthProvider = ({ children }) => {
     })
   }
 
+  // save user
+
+  const saveUser = async user => {
+    const currentUser = {
+      email: user?.email,
+      role: 'guest',
+      status: 'Verified'
+    }
+    const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser)
+    return data
+  }
+
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
       // console.log('CurrentUser-->', currentUser)
       setLoading(false)
+      if(currentUser){
+        saveUser(currentUser)
+      }
     })
     return () => {
       return unsubscribe()
