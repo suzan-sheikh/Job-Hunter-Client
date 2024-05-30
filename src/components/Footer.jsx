@@ -3,17 +3,18 @@ import logo from "../assets/images/logo.png";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { FaCopyright } from "react-icons/fa";
+import Feedback from "../pages/Feedback";
 
 const Footer = () => {
   return (
     <footer data-aos="flip-down" className="shadow-sm">
       <hr />
-      <div className="container px-6 py-8 mx-auto">
+      <div className="container px-6 py-8 mx-auto">   
         <div className="flex flex-col items-center text-center gap-2">
+          
           <Link to="/" className="flex gap-2 items-center">
             <img className="w-auto h-7" src={logo} alt="logo" />
-          </Link>
-
+          </Link> 
           <div className="flex flex-wrap justify-center mt-6 -mx-4 gap-2">
             <Link
               to="/"
@@ -61,7 +62,10 @@ const Footer = () => {
             >
               Blogs
             </Link>
-          </div>
+          </div>     
+          
+        <hr className="my-6 border-gray-200 md:my-10 " />     
+        <Feedback/>  
         </div>
 
         <hr className="my-6 border-gray-200 md:my-10 " />
@@ -81,7 +85,6 @@ const Footer = () => {
               <p>Copyright 2024. All Rights Reserved by Md Suzan Sheikh.</p>
             </div>
           </div>
-
           <div className="flex flex-col gap-1">
             <p className="text-cyan-500">Contact Us</p>
             <div className="flex items-center justify-center gap-2">
